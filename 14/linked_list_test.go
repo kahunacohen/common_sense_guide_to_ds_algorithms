@@ -37,3 +37,12 @@ func TestInsertAtIndex(t *testing.T) {
 		t.Fatalf("wanted 'd', got %s", *val)
 	}
 }
+
+func TestDeleteAtIndex0(t *testing.T) {
+	linkedList := getLinkedList()
+	linkedList.DeleteAtIndex(0)
+	val := linkedList.Read(0)
+	if *val != "b" {
+		t.Fatalf("wanted 'b', got '%s'", *val)
+	}
+}

@@ -55,39 +55,12 @@ func (l LinkedList) InsertAtIndex(indx int, value string) {
 	}
 }
 
+func (l *LinkedList) DeleteAtIndex(indx int) {
+	if indx == 0 {
+		l.FirstNode = l.FirstNode.nextNode
+	}
+}
+
 func main() {
 	fmt.Println("Hello world")
 }
-
-// func main() {
-// 	nodeA := Node{data: "a"}
-// 	nodeB := Node{data: "b"}
-// 	nodeC := Node{data: "c"}
-
-// 	nodeA.nextNode = &nodeB
-// 	nodeB.nextNode = &nodeC
-// 	ll := LinkedList{&nodeA}
-// 	value := ll.Read(1)
-// 	if value != nil {
-// 		fmt.Printf("Value is: %s\n", *value)
-// 	} else {
-// 		fmt.Println("Value is nill")
-// 	}
-// 	value = ll.Read(10)
-// 	if value != nil {
-// 		fmt.Printf("Value is: %s\n", *value)
-// 	} else {
-// 		fmt.Println("Value is nill")
-// 	}
-// 	foundIndex := ll.IndexOf("c")
-// 	fmt.Printf("index of 'c' is: %d\n", *foundIndex)
-// 	foundIndex = ll.IndexOf("d")
-// 	if foundIndex == nil {
-// 		fmt.Println("index of 'd' is nil")
-// 	}
-// 	ll.InsertAtIndex(1, "new node")
-// 	fmt.Println(*(ll.Read(0)))
-// 	fmt.Println(*(ll.Read(1)))
-// 	fmt.Println(*(ll.Read(2)))
-// 	fmt.Println(*(ll.Read(3)))
-// }
