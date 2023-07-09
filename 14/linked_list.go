@@ -61,20 +61,14 @@ func (l *LinkedList) DeleteAtIndex(indx int) {
 	}
 	curNode := l.FirstNode
 	curIndx := 0
-	for curIndx <= indx-1 {
-		// find the node before this one
-		// change that node's next pointer to the node
-		// after this one.
-		fmt.Println(curNode.data)
-
-		// We're on the last node. Just set next node to nil.
-		if curNode.nextNode.nextNode == nil {
-			curNode.nextNode = nil
-			return
-		}
+	// Find the node preceeding the one we want to delete.
+	for curIndx < indx-1 {
 		curNode = curNode.nextNode
 		curIndx++
 	}
+	fmt.Println(curIndx)
+	fmt.Println(curNode.data)
+	curNode.nextNode = curNode.nextNode.nextNode
 }
 
 func main() {
