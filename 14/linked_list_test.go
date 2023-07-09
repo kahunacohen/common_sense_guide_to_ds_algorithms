@@ -1,6 +1,8 @@
 package main
 
-import "testing"
+import (
+	"testing"
+)
 
 func getLinkedList() LinkedList {
 	n1 := Node{data: "a"}
@@ -44,5 +46,35 @@ func TestDeleteAtIndex0(t *testing.T) {
 	val := linkedList.Read(0)
 	if *val != "b" {
 		t.Fatalf("wanted 'b', got '%s'", *val)
+	}
+}
+
+func TestDeleteAtLastIndex(t *testing.T) {
+	linkedList := getLinkedList()
+	linkedList.DeleteAtIndex(2)
+	val := linkedList.Read(0)
+	if *val != "a" {
+		t.Fatalf("wanted 'a', got '%s'", *val)
+	}
+	val = linkedList.Read(1)
+	if *val != "b" {
+		t.Fatalf("wanted 'b', got '%s'", *val)
+	}
+	val = linkedList.Read(2)
+	if val != nil {
+		t.Fatalf("wanted nil, didn't get it")
+	}
+}
+
+func TestDeleteAtIndex(t *testing.T) {
+	linkedList := getLinkedList()
+	linkedList.DeleteAtIndex(1)
+	val := linkedList.Read(0)
+	if *val != "a" {
+		t.Fatalf("wanted 'a', got '%s'", *val)
+	}
+	val = linkedList.Read(1)
+	if *val != "c" {
+		t.Fatalf("wanted 'c', got '%s'", *val)
 	}
 }
