@@ -78,3 +78,12 @@ func TestDeleteAtIndex(t *testing.T) {
 		t.Fatalf("wanted 'c', got '%s'", *val)
 	}
 }
+
+func TestInsertAtEnd(t *testing.T) {
+	dl := DoublyLinkedList{}
+	dl.InsertAtEnd("end")
+	if dl.FirstNode.data != "end" && dl.LastNode.data == "end" {
+		t.Fatalf("wanted 'end', got first: %s, last: %s", dl.FirstNode.data, dl.LastNode.data)
+	}
+	
+}

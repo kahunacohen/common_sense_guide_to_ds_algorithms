@@ -71,6 +71,40 @@ func (l *LinkedList) DeleteAtIndex(indx int) {
 	curNode.nextNode = curNode.nextNode.nextNode
 }
 
+type DoublyLinkedNode struct {
+
+}
+
+type DoublyLinkedList struct {
+	FirstNode *Node
+	LastNode *Node
+}
+func (dl DoublyLinkedList) Read(index int) *string {
+	currentNode := dl.FirstNode
+	currentIndex := 0
+	// Keep looking for the next node until index is the same
+	for currentIndex < index {
+		currentNode = currentNode.nextNode
+		currentIndex += 1
+		if currentNode == nil {
+			return nil
+		}
+
+	}
+	return &currentNode.data
+}
+func (dl *DoublyLinkedList) InsertAtEnd(value string) {
+	// No nodes yet.
+	node := &Node{data: value, nextNode: nil}
+	if dl.FirstNode == nil {
+		dl.FirstNode = node
+		dl.LastNode = node
+	} else {
+		
+	}
+}
+
+
 func main() {
 	fmt.Println("Hello world")
 }
