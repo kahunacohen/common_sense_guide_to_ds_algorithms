@@ -72,12 +72,13 @@ func (l *LinkedList) DeleteAtIndex(indx int) {
 }
 
 type DoublyLinkedNode struct {
-
+	data     string
+	nextNode *DoublyLinkedNode
 }
 
 type DoublyLinkedList struct {
-	FirstNode *Node
-	LastNode *Node
+	FirstNode *DoublyLinkedNode
+	LastNode *DoublyLinkedNode
 }
 func (dl DoublyLinkedList) Read(index int) *string {
 	currentNode := dl.FirstNode
@@ -95,13 +96,11 @@ func (dl DoublyLinkedList) Read(index int) *string {
 }
 func (dl *DoublyLinkedList) InsertAtEnd(value string) {
 	// No nodes yet.
-	node := &Node{data: value, nextNode: nil}
+	node := &DoublyLinkedNode{data: value, nextNode: nil}
 	if dl.FirstNode == nil {
 		dl.FirstNode = node
 		dl.LastNode = node
-	} else {
-		
-	}
+	} 
 }
 
 
