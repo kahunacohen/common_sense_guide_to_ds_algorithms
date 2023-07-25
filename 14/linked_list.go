@@ -26,6 +26,16 @@ func (l LinkedList) Read(index int) *string {
 	return &currentNode.data
 }
 
+func (l LinkedList) GetValues() []string {
+	var res []string
+	currentNode := l.FirstNode
+	for currentNode != nil {
+		res = append(res, currentNode.data)
+		currentNode = currentNode.nextNode
+	}
+	return res
+}
+
 func (l LinkedList) IndexOf(value string) *int {
 	var curIndex int
 	curNode := l.FirstNode

@@ -93,3 +93,14 @@ func TestInsertAtEnd(t *testing.T) {
 		t.Fatalf("wanted 'end', got %s", dl.LastNode.prevNode.data)
 	}
 }
+
+func TestGetValues(t *testing.T) {
+	ll := getLinkedList()
+	res := ll.GetValues()
+	if len(res) != 3 {
+		t.Fatalf("wanted 3, got %d", len(res))
+	}
+	if res[0] != "a" && res[1] != "b" && res[2] != "c" {
+		t.Fatalf("didn't get a slice with the right string values. Got: %v", res)
+	}
+}
