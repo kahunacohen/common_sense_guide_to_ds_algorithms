@@ -85,5 +85,11 @@ func TestInsertAtEnd(t *testing.T) {
 	if dl.FirstNode.data != "end" && dl.LastNode.data == "end" {
 		t.Fatalf("wanted 'end', got first: %s, last: %s", dl.FirstNode.data, dl.LastNode.data)
 	}
-	
+	dl.InsertAtEnd("new end")
+	if dl.LastNode.data != "new end" {
+		t.Fatalf("wanted 'new end', got %s", dl.LastNode.data)
+	}
+	if dl.LastNode.prevNode.data != "end" {
+		t.Fatalf("wanted 'end', got %s", dl.LastNode.prevNode.data)
+	}
 }
