@@ -80,6 +80,18 @@ func (l *LinkedList) DeleteAtIndex(indx int) {
 	fmt.Println(curNode.data)
 	curNode.nextNode = curNode.nextNode.nextNode
 }
+func (l *LinkedList) GetLastNode() *Node {
+	if l.FirstNode == nil {
+		return nil
+	}
+	curNode := l.FirstNode
+	for {
+		if curNode.nextNode == nil {
+			return curNode
+		}
+		curNode = curNode.nextNode
+	}
+}
 
 type DoublyLinkedNode struct {
 	data     string
@@ -89,8 +101,9 @@ type DoublyLinkedNode struct {
 
 type DoublyLinkedList struct {
 	FirstNode *DoublyLinkedNode
-	LastNode *DoublyLinkedNode
+	LastNode  *DoublyLinkedNode
 }
+
 func (dl DoublyLinkedList) Read(index int) *string {
 	currentNode := dl.FirstNode
 	currentIndex := 0
@@ -121,7 +134,7 @@ func (dl *DoublyLinkedList) GetAllValuesFromEnd() []string {
 	if dl.FirstNode.nextNode == nil {
 		return []string{dl.FirstNode.data}
 	}
-	var ret[]string
+	var ret []string
 	currentNode := dl.LastNode
 	for currentNode != nil {
 		ret = append(ret, currentNode.data)
@@ -129,7 +142,6 @@ func (dl *DoublyLinkedList) GetAllValuesFromEnd() []string {
 	}
 	return ret
 }
-
 
 func main() {
 	fmt.Println("Hello world")

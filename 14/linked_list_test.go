@@ -120,3 +120,14 @@ func TestGetAllValuesFromEnd(t *testing.T) {
 		t.Fatalf("wanted 'a', got %s", res[0])
 	}
 }
+
+func TestGetLastNode(t *testing.T) {
+	ll := getLinkedList()
+	lastNode := ll.GetLastNode()
+	if lastNode == nil {
+		t.Fatalf("last node shouldn't be nil")
+	}
+	if lastNode.data != "c" {
+		t.Fatalf("wanted 'c', got %s", lastNode.data)
+	}
+}
