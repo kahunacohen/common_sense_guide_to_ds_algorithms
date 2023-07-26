@@ -104,3 +104,19 @@ func TestGetValues(t *testing.T) {
 		t.Fatalf("didn't get a slice with the right string values. Got: %v", res)
 	}
 }
+func TestGetAllValuesFromEnd(t *testing.T) {
+	dl := DoublyLinkedList{}
+	dl.InsertAtEnd("a")
+	dl.InsertAtEnd("b")
+	dl.InsertAtEnd("c")
+	res := dl.GetAllValuesFromEnd()
+	if res[0] != "c" {
+		t.Fatalf("wanted 'c', got %s", res[0])
+	}
+	if res[1] != "b" {
+		t.Fatalf("wanted 'b', got %s", res[0])
+	}
+	if res[2] != "a" {
+		t.Fatalf("wanted 'a', got %s", res[0])
+	}
+}

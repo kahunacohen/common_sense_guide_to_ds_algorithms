@@ -117,6 +117,18 @@ func (dl *DoublyLinkedList) InsertAtEnd(value string) {
 		dl.LastNode = node
 	}
 }
+func (dl *DoublyLinkedList) GetAllValuesFromEnd() []string {
+	if dl.FirstNode.nextNode == nil {
+		return []string{dl.FirstNode.data}
+	}
+	var ret[]string
+	currentNode := dl.LastNode
+	for currentNode != nil {
+		ret = append(ret, currentNode.data)
+		currentNode = currentNode.prevNode
+	}
+	return ret
+}
 
 
 func main() {
