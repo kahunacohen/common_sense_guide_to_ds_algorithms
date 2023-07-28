@@ -4,8 +4,8 @@ import "fmt"
 
 // A linked list implementation.
 type Node struct {
-	data     string
-	nextNode *Node
+	Data     string
+	NextNode *Node
 }
 type LinkedList struct {
 	FirstNode *Node
@@ -16,22 +16,22 @@ func (l LinkedList) Read(index int) *string {
 	currentIndex := 0
 	// Keep looking for the next node until index is the same
 	for currentIndex < index {
-		currentNode = currentNode.nextNode
+		currentNode = currentNode.NextNode
 		currentIndex += 1
 		if currentNode == nil {
 			return nil
 		}
 
 	}
-	return &currentNode.data
+	return &currentNode.Data
 }
 
 func (l LinkedList) GetValues() []string {
 	var res []string
 	currentNode := l.FirstNode
 	for currentNode != nil {
-		res = append(res, currentNode.data)
-		currentNode = currentNode.nextNode
+		res = append(res, currentNode.Data)
+		currentNode = currentNode.NextNode
 	}
 	return res
 }
@@ -39,9 +39,9 @@ func (l LinkedList) GetValues() []string {
 func (l LinkedList) IndexOf(value string) *int {
 	var curIndex int
 	curNode := l.FirstNode
-	for curNode.data != value {
+	for curNode.Data != value {
 		curIndex += 1
-		curNode = curNode.nextNode
+		curNode = curNode.NextNode
 		if curNode == nil {
 			return nil
 		}
@@ -50,35 +50,35 @@ func (l LinkedList) IndexOf(value string) *int {
 }
 
 func (l LinkedList) InsertAtIndex(indx int, value string) {
-	newNode := Node{data: value, nextNode: nil}
+	newNode := Node{Data: value, NextNode: nil}
 	if indx == 0 {
-		newNode.nextNode = l.FirstNode
+		newNode.NextNode = l.FirstNode
 	} else {
 		curIndx := 0
 		curNode := l.FirstNode
 		for curIndx < indx-1 {
-			curNode = curNode.nextNode
+			curNode = curNode.NextNode
 			curIndx += 1
 		}
-		newNode.nextNode = curNode.nextNode
-		curNode.nextNode = &newNode
+		newNode.NextNode = curNode.NextNode
+		curNode.NextNode = &newNode
 	}
 }
 
 func (l *LinkedList) DeleteAtIndex(indx int) {
 	if indx == 0 {
-		l.FirstNode = l.FirstNode.nextNode
+		l.FirstNode = l.FirstNode.NextNode
 	}
 	curNode := l.FirstNode
 	curIndx := 0
 	// Find the node preceeding the one we want to delete.
 	for curIndx < indx-1 {
-		curNode = curNode.nextNode
+		curNode = curNode.NextNode
 		curIndx++
 	}
 	fmt.Println(curIndx)
-	fmt.Println(curNode.data)
-	curNode.nextNode = curNode.nextNode.nextNode
+	fmt.Println(curNode.Data)
+	curNode.NextNode = curNode.NextNode.NextNode
 }
 func (l *LinkedList) GetLastNode() *Node {
 	if l.FirstNode == nil {
@@ -86,11 +86,27 @@ func (l *LinkedList) GetLastNode() *Node {
 	}
 	curNode := l.FirstNode
 	for {
-		if curNode.nextNode == nil {
+		if curNode.NextNode == nil {
 			return curNode
 		}
-		curNode = curNode.nextNode
+		curNode = curNode.NextNode
 	}
+}
+
+// Recurisve implementation of reversing the
+// list in-place.
+func (l *LinkedList) Reverse() {
+	if l.FirstNode.NextNode == nil {
+		return
+	}
+	// Chop off the first node, the list then becomes
+	// the rest of the list.
+	l.FirstNode = l.FirstNode.NextNode
+	firstNode := l.FirstNode
+	nextNode := l.FirstNode.NextNode
+	l.FirstNode = nextNode
+	l.FirstNode.NextNode = firstNode
+
 }
 
 type DoublyLinkedNode struct {

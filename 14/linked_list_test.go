@@ -5,12 +5,12 @@ import (
 )
 
 func getLinkedList() LinkedList {
-	n1 := Node{data: "a"}
-	n2 := Node{data: "b"}
-	n3 := Node{data: "c"}
-	n1.nextNode = &n2
-	n2.nextNode = &n3
-	n3.nextNode = nil
+	n1 := Node{Data: "a"}
+	n2 := Node{Data: "b"}
+	n3 := Node{Data: "c"}
+	n1.NextNode = &n2
+	n2.NextNode = &n3
+	n3.NextNode = nil
 	linkedList := LinkedList{&n1}
 	return linkedList
 }
@@ -127,7 +127,24 @@ func TestGetLastNode(t *testing.T) {
 	if lastNode == nil {
 		t.Fatalf("last node shouldn't be nil")
 	}
-	if lastNode.data != "c" {
-		t.Fatalf("wanted 'c', got %s", lastNode.data)
+	if lastNode.Data != "c" {
+		t.Fatalf("wanted 'c', got %s", lastNode.Data)
+	}
+}
+
+func TestReverseRecursive(t *testing.T) {
+	ll := getLinkedList()
+	ll.Reverse()
+	x := ll.Read(0)
+	y := ll.Read(1)
+	z := ll.Read(2)
+	if *x != "c" {
+		t.Fatalf("wanted 'c', got %s", *x)
+	}
+	if *y != "b" {
+		t.Fatalf("wanted 'b', got %s", *y)
+	}
+	if *z != "a" {
+		t.Fatalf("wanted 'a', got %s", *z)
 	}
 }
