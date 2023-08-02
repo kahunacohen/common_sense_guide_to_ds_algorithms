@@ -92,25 +92,8 @@ func (l *LinkedList) GetLastNode() *Node {
 		curNode = curNode.NextNode
 	}
 }
+func (l *LinkedList) ReverseIterative() {
 
-// Reverse reverses the linked list in place using recursion.
-func (ll *LinkedList) Reverse() {
-	ll.FirstNode = ll.reverseRecursive(nil, ll.FirstNode)
-}
-
-// reverseRecursive is a private helper method for reversing the linked list recursively.
-func (ll *LinkedList) reverseRecursive(previous, current *Node) *Node {
-	if current == nil {
-		// The end of the original list, the new head is the last node (previous).
-		return previous
-	}
-
-	// Store the reference to the next node before reversing the pointer.
-	next := current.NextNode
-	current.NextNode = previous
-
-	// Recur with the next node as the current node and the current node as the previous node.
-	return ll.reverseRecursive(current, next)
 }
 
 type DoublyLinkedNode struct {
