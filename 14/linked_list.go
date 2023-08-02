@@ -93,7 +93,16 @@ func (l *LinkedList) GetLastNode() *Node {
 	}
 }
 func (l *LinkedList) ReverseIterative() {
-
+	var prev, cur, next *Node
+	prev = nil
+	cur = l.FirstNode
+	for cur != nil {
+		next = cur.NextNode
+		cur.NextNode = prev
+		prev = cur
+		cur = next
+	}
+	l.FirstNode = prev
 }
 
 type DoublyLinkedNode struct {
