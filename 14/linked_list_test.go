@@ -135,6 +135,7 @@ func TestGetLastNode(t *testing.T) {
 func TestReverseRecursive(t *testing.T) {
 	ll := getLinkedList()
 	ll.Reverse()
+
 	x := ll.Read(0)
 	y := ll.Read(1)
 	z := ll.Read(2)
