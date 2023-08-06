@@ -153,6 +153,7 @@ func TestReverseRecursive(t *testing.T) {
 	ll := getLinkedList()
 	ll.ReverseRecursive()
 	vals := ll.GetValues()
+
 	c := vals[0]
 	b := vals[1]
 	a := vals[2]

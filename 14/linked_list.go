@@ -104,17 +104,32 @@ func (l *LinkedList) ReverseIterative() {
 	}
 	l.FirstNode = prev
 }
+
+// This is an intellectual excersise that is not given in the
+// problem set. In real life it doesn't make sense to write this
+// recursively as it could lead to stack overflow with linked lists
+// with lots of elements. Even if it doesn't it uses O(n) auxilary
+// memory space. This is because each function call uses up a stack frame.
+// In a language with tail optimization such as Haskell, OCaml, Scala etc.
+// this would make more sense.
 func (l *LinkedList) ReverseRecursive() {
-	var prev, cur, next *Node
-	prev = nil
-	cur = l.FirstNode
-	for cur != nil {
-		next = cur.NextNode
-		cur.NextNode = prev
-		prev = cur
-		cur = next
+	var prev *Node
+
+	// Call a private method to start things off. Otherwise
+	// it's awkward to pass initial parameters to
+	// the public method.
+	l.FirstNode = l.swapNodes(l.FirstNode, prev)
+}
+
+func (l *LinkedList) swapNodes(cur, prev *Node) *Node {
+	if cur == nil {
+		return prev
 	}
-	l.FirstNode = prev
+	next := cur.NextNode
+	cur.NextNode = prev
+	prev = cur
+	cur = next
+	return l.swapNodes(cur, prev)
 }
 
 type DoublyLinkedNode struct {
