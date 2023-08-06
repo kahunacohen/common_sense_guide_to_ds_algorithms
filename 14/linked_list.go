@@ -104,6 +104,18 @@ func (l *LinkedList) ReverseIterative() {
 	}
 	l.FirstNode = prev
 }
+func (l *LinkedList) ReverseRecursive() {
+	var prev, cur, next *Node
+	prev = nil
+	cur = l.FirstNode
+	for cur != nil {
+		next = cur.NextNode
+		cur.NextNode = prev
+		prev = cur
+		cur = next
+	}
+	l.FirstNode = prev
+}
 
 type DoublyLinkedNode struct {
 	data     string

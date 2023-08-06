@@ -132,9 +132,26 @@ func TestGetLastNode(t *testing.T) {
 	}
 }
 
-func TestReverseListIterative(t *testing.T) {
+func TestReverseIterative(t *testing.T) {
 	ll := getLinkedList()
 	ll.ReverseIterative()
+	vals := ll.GetValues()
+	c := vals[0]
+	b := vals[1]
+	a := vals[2]
+	if c != "c" {
+		t.Fatalf("wamted 'c', got %s", c)
+	}
+	if b != "b" {
+		t.Fatalf("wamted 'b', got %s", b)
+	}
+	if a != "a" {
+		t.Fatalf("wamted 'a', got %s", a)
+	}
+}
+func TestReverseRecursive(t *testing.T) {
+	ll := getLinkedList()
+	ll.ReverseRecursive()
 	vals := ll.GetValues()
 	c := vals[0]
 	b := vals[1]
