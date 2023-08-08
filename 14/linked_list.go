@@ -132,6 +132,15 @@ func (l *LinkedList) swapNodes(cur, prev *Node) *Node {
 	return l.swapNodes(cur, prev)
 }
 
+// Given a node in a linked list, with no access to the linked
+// list itself, delete the node
+func DeleteTheNode(node *Node) {
+	// first copy the data and pointer of this node.
+	node.Data = node.NextNode.Data
+	node.NextNode = node.NextNode.NextNode
+	fmt.Println("foo")
+}
+
 type DoublyLinkedNode struct {
 	data     string
 	nextNode *DoublyLinkedNode

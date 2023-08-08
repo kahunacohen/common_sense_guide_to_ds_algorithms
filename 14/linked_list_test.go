@@ -167,3 +167,20 @@ func TestReverseRecursive(t *testing.T) {
 		t.Fatalf("wamted 'a', got %s", a)
 	}
 }
+func TestDeleteThisNode(t *testing.T) {
+	ll := getLinkedList()
+	// Add an d node.
+	cNode := ll.FirstNode.NextNode.NextNode
+	cNode.NextNode = &Node{Data: "d", NextNode: nil}
+	bNode := ll.FirstNode.NextNode
+	if bNode.Data != "b" {
+		t.Fatalf("wanted 'b', got %s", bNode.Data)
+	}
+	DeleteTheNode(bNode)
+	if bNode.Data != "c" {
+		t.Fatalf("wanted c, got %s", bNode.Data)
+	}
+	if bNode.NextNode.Data != "d" {
+		t.Fatalf("wanted d")
+	}
+}
