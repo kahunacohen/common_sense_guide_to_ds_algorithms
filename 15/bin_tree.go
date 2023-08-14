@@ -7,10 +7,11 @@ type TreeNode struct {
 }
 
 func (t *TreeNode) Search(val int, curNode *TreeNode) *TreeNode {
-	if curNode.value == val {
+	if curNode == nil {
+		return nil
+	} else if curNode.value == val {
 		return curNode
-	}
-	if val < curNode.value {
+	} else if val < curNode.value {
 		return t.Search(val, curNode.left)
 	} else {
 		return t.Search(val, curNode.right)
