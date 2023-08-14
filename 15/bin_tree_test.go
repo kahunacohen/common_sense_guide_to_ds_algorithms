@@ -3,20 +3,22 @@ package main
 import "testing"
 
 func TestSearch(t *testing.T) {
-	left := TreeNode{value: 0}
-	right := TreeNode{value: 2}
-	root := TreeNode{value: 1, left: &left, right: &right}
+	left := TreeNode{Value: 0}
+	right := TreeNode{Value: 2}
+	root := TreeNode{Value: 1, left: &left, right: &right}
+
 	// Search for a value that doens't exist.
-	res := root.Search(3, &root)
+	res := root.Search(3)
 	if res != nil {
-		t.Fatalf("wanted 3, got %d", res.value)
+		t.Fatalf("wanted nil, got %d", res.Value)
 	}
-	res = root.Search(1, &root)
-	if res.value != 1 {
-		t.Fatalf("wanted 1, got %d", res.value)
+
+	res = root.Search(1)
+	if res.Value != 1 {
+		t.Fatalf("wanted 1, got %d", res.Value)
 	}
-	res = root.Search(2, &root)
-	if res.value != 2 {
-		t.Fatalf("wanted 2, got %d", res.value)
+	res = root.Search(2)
+	if res.Value != 2 {
+		t.Fatalf("wanted 2, got %d", res.Value)
 	}
 }
