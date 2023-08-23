@@ -12,6 +12,7 @@ func TestSearch(t *testing.T) {
 
 	// Search for a value that doens't exist.
 	res := root.Search(3)
+	fmt.Println(res)
 	if res != nil {
 		t.Fatalf("wanted nil, got %d", res.Value)
 	}

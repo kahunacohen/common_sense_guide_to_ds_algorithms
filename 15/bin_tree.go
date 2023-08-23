@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 type TreeNode struct {
 	Value int
 	left  *TreeNode
@@ -9,7 +7,6 @@ type TreeNode struct {
 }
 
 func (t *TreeNode) searchRecur(val int, curNode *TreeNode) *TreeNode {
-	fmt.Printf("Searching: %d\n", curNode.Value)
 	if curNode == nil {
 		return nil
 	} else if curNode.Value == val {
