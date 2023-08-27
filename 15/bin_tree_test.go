@@ -50,10 +50,14 @@ func TestInsert(t *testing.T) {
 	}
 	fmt.Println(root.Search(3))
 }
-func TestDelete(t *testing.T) {
+func getTree() TreeNode {
 	left := TreeNode{Value: 0}
 	right := TreeNode{Value: 2}
 	root := TreeNode{Value: 1, left: &left, right: &right}
+	return root
+}
+func TestDeleteLeftLeaf(t *testing.T) {
+	root := getTree()
 	root.Delete(0)
 	if root.Value != 1 {
 		t.Fatalf("wanted 1, got %d", root.Value)
@@ -63,5 +67,18 @@ func TestDelete(t *testing.T) {
 	}
 	if root.right.Value != 2 {
 		t.Fatalf("wanted 2, got %d", root.right.Value)
+	}
+}
+func TestDeleteRightLeaf(t *testing.T) {
+	root := getTree()
+	root.Delete(2)
+	if root.Value != 1 {
+		t.Fatalf("wanted 1, got %d", root.Value)
+	}
+	if root.left.Value != 0 {
+		t.Fatalf("wanted 0, got: %v", root.left)
+	}
+	if root.right != nil {
+		t.Fatalf("wanted nil, got %d", root.right.Value)
 	}
 }
