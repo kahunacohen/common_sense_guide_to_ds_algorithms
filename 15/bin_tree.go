@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type TreeNode struct {
 	Value int
 	left  *TreeNode
@@ -40,5 +42,20 @@ func (t *TreeNode) insertRecur(val int, prevNode, curNode *TreeNode) {
 func (t *TreeNode) Insert(val int) {
 	t.insertRecur(val, nil, t)
 }
+func (t *TreeNode) deleteRecur(val int, curNode, parentNode *TreeNode) {
+	fmt.Printf("called on %v\n", curNode)
+	if curNode == nil {
+		return
+	}
+	if val == curNode.Value {
+		parentNode.left = nil
+	}
+	t.deleteRecur(val, curNode.left, curNode)
+
+}
+func (t *TreeNode) Delete(val int) {
+	t.deleteRecur(val, t, nil)
+}
+
 func main() {
 }
