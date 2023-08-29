@@ -58,7 +58,7 @@ func getTree() TreeNode {
 }
 func TestDeleteLeftLeaf(t *testing.T) {
 	root := getTree()
-	root.Delete(0)
+	root.Delete(0, &root)
 	if root.Value != 1 {
 		t.Fatalf("wanted 1, got %d", root.Value)
 	}
@@ -71,7 +71,7 @@ func TestDeleteLeftLeaf(t *testing.T) {
 }
 func TestDeleteRightLeaf(t *testing.T) {
 	root := getTree()
-	root.Delete(2)
+	root.Delete(2, &root)
 	if root.Value != 1 {
 		t.Fatalf("wanted 1, got %d", root.Value)
 	}

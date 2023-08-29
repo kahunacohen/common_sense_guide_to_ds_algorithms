@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 type TreeNode struct {
 	Value int
 	left  *TreeNode
@@ -42,19 +40,48 @@ func (t *TreeNode) insertRecur(val int, prevNode, curNode *TreeNode) {
 func (t *TreeNode) Insert(val int) {
 	t.insertRecur(val, nil, t)
 }
-func (t *TreeNode) deleteRecur(val int, curNode, parentNode *TreeNode) {
-	fmt.Printf("called on %v\n", curNode)
-	if curNode == nil {
-		return
-	}
-	if val == curNode.Value {
-		parentNode.left = nil
-	}
-	t.deleteRecur(val, curNode.left, curNode)
 
+func (t *TreeNode) lift(node, nodeToDelete *TreeNode) *TreeNode {
+	if node.left != nil {
+		node.left = t.lift(node.left, nodeToDelete)
+		return node
+	} else {
+		nodeToDelete.Value = node.Value
+		return node.right
+	}
 }
-func (t *TreeNode) Delete(val int) {
-	t.deleteRecur(val, t, nil)
+func (t *TreeNode) Delete(val int, node *TreeNode) *TreeNode {
+	// Base case: we've hit bottom of tree. Parent
+	// node has no children.
+	if node == nil {
+		return nil
+
+		// If the value we're deleting is less than or greater
+		// than the current node's value, we set the left or right
+		// child to be the return value of this recursive call.
+	} else if val < node.Value {
+		node.left = t.Delete(val, node.left)
+		return node
+	} else if val > node.Value {
+		node.right = t.Delete(val, node.right)
+		return node
+	} else if val == node.Value {
+		// If the current node has no left child, we delete it by returning its
+		// right child (and subtree if exists) to be the parent's new subtree.
+		if node.left == nil {
+			return node.right
+		} else if node.right == nil {
+			return node.left
+		} else {
+			// The current node has two children, we delete the current node
+			// by calling the lift function which changes the current node's value to the value
+			// of its successor node:
+			node.right = t.lift(node.right, node)
+			return node
+		}
+	} else {
+		return nil
+	}
 }
 
 func main() {
