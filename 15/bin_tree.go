@@ -84,5 +84,15 @@ func (t *TreeNode) Delete(val int, node *TreeNode) *TreeNode {
 	}
 }
 
+func (t *TreeNode) FindMax(curNode *TreeNode, maxSoFar int) int {
+	if curNode == nil {
+		return maxSoFar
+	}
+	if curNode.Value > maxSoFar {
+		maxSoFar = curNode.Value
+	}
+	return t.FindMax(curNode.right, maxSoFar)
+}
+
 func main() {
 }

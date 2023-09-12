@@ -82,3 +82,22 @@ func TestDeleteRightLeaf(t *testing.T) {
 		t.Fatalf("wanted nil, got %d", root.right.Value)
 	}
 }
+func TestFindMax(t *testing.T) {
+	zero := TreeNode{Value: 0}
+	one := TreeNode{Value: 1}
+	root := TreeNode{Value: 2}
+	three := TreeNode{Value: 3}
+	four := TreeNode{Value: 4}
+	five := TreeNode{Value: 5}
+	
+	root.left = &zero
+	root.right = &four
+	zero.left = &one
+	four.left = &three
+	four.right = &five
+
+	max := root.FindMax(&root, root.Value)
+	if max != 5 {
+		t.Fatalf("wanted 3, got %d", max)
+	}
+}
