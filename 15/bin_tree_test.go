@@ -89,14 +89,14 @@ func TestFindMax(t *testing.T) {
 	three := TreeNode{Value: 3}
 	four := TreeNode{Value: 4}
 	five := TreeNode{Value: 5}
-	
+
 	root.left = &zero
 	root.right = &four
 	zero.left = &one
 	four.left = &three
 	four.right = &five
 
-	max := root.FindMax(&root, root.Value)
+	max := root.FindMax()
 	if max != 5 {
 		t.Fatalf("wanted 3, got %d", max)
 	}
