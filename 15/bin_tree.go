@@ -84,13 +84,22 @@ func (t *TreeNode) Delete(val int, node *TreeNode) *TreeNode {
 	}
 }
 
-func (t *TreeNode) traverse(f func(t *TreeNode)) {
-	if t == nil {
-		return
+func (t *TreeNode) findMax(curNode *TreeNode, maxSoFar int) int {
+	if curNode == nil {
+		return maxSoFar
 	}
-	t.left.traverse(f)
-	f(t)
-	t.right.traverse(f)
+	if curNode.Value > maxSoFar {
+		maxSoFar = curNode.Value
+	}
+	return t.findMax(curNode.right, maxSoFar)
+}
+
+// Finds the max value in the tree. Running time is O(log n)
+// because each "iteration" it rules out half of the next subtree
+// given a perfectly balanced binary tree. Worst case is O(n) if the tree
+// is linear.
+func (t *TreeNode) FindMax() int {
+	return t.findMax(t, t.Value)
 }
 
 func main() {
