@@ -84,5 +84,14 @@ func (t *TreeNode) Delete(val int, node *TreeNode) *TreeNode {
 	}
 }
 
+func (t *TreeNode) traverse(f func(t *TreeNode)) {
+	if t == nil {
+		return
+	}
+	t.left.traverse(f)
+	f(t)
+	t.right.traverse(f)
+}
+
 func main() {
 }

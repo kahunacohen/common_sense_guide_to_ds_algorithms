@@ -82,3 +82,10 @@ func TestDeleteRightLeaf(t *testing.T) {
 		t.Fatalf("wanted nil, got %d", root.right.Value)
 	}
 }
+func callback(t *TreeNode) {
+	fmt.Println(t.Value)
+}
+func TestTraverse(t *testing.T) {
+	root := getTree()
+	root.traverse(callback)
+}
